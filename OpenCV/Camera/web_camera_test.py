@@ -7,8 +7,24 @@ cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
 w = 640 #1280#1920
 h = 480 #720#1080
 
+topLeft = (50, 50)
+bottomRight = (300, 300)
+bold = 0
+
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, w)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
+
+
+#Callback function for the trackbar
+def on_bold_trackbar(value):
+    #print("Trackbar value:", value)
+    global bold
+    bold = value
+
+
+cv2.namedWindow("Camera")
+cv2.createTrackbar("bold", "Camera", bold, 10, on_bold_trackbar)
+
 
 # If video device was successfully opened
 while(cap.isOpened()):
@@ -17,6 +33,16 @@ while(cap.isOpened()):
     if ret is False:
         print("Can't receive frame (stream end?). Exiting ...")
         break
+
+    # Line
+    cv2.line(frame, topLeft, bottomRight, (0, 255, 0), 5)
+
+    # Rectangle
+    cv2.rectangle(frame, [pt+30 for pt in topLeft], [pt-30 for pt in bottomRight], (0, 0, 255), 5)
+
+    # Text
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(frame, 'YOU', [pt+80 for pt in topLeft], font, 2, (0, 255, 255), 1 + bold)
 
     # Display
     cv2.imshow("Camera", frame)
