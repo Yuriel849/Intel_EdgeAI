@@ -3,13 +3,13 @@
 Different repository from [Intel_Edge_AI_3rd](https://github.com/Yuriel849/Intel_Edge_AI_3rd) and holds code, projects, and work from my studies with Intel instructors.
 
 ## Web camera with Linux Ubuntu
-'''shell
+```shell
 sudo apt install v4l-utils
-'''
+```
 to install necessary library<br>
-'''shell
+```shell
 v4l2-ctl --list-devices
-'''
+```
 to check camera devices
 
 ### * Getting video capture from the first camera device with OpenCV in Python
