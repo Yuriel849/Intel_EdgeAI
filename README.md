@@ -13,7 +13,9 @@ v4l2-ctl --list-devices
 to check camera devices
 
 ### * Getting video capture from the first camera device with OpenCV in Python
->cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)<br>
->> "CAP_DSHOW": parameter for Windows systems<br>
+```
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+```
+"CAP_DSHOW": parameter for Windows systems<br>
 "CAP_V4L2": parameter for Linux systems
 
