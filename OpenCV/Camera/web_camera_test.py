@@ -10,6 +10,10 @@ h = 480 #720#1080
 topLeft = (50, 50)
 bottomRight = (300, 300)
 bold = 0
+tSize = 0
+cR = 0
+cG = 0
+cB = 0
 
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, w)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
@@ -22,8 +26,40 @@ def on_bold_trackbar(value):
     bold = value
 
 
+#Callback function for the trackbar
+def on_size_trackbar(value):
+    #print("Trackbar value:", value)
+    global tSize
+    tSize = value
+
+
+#Callback function for the trackbar
+def on_cR_trackbar(value):
+    #print("Trackbar value:", value)
+    global cR
+    cR = value
+
+
+#Callback function for the trackbar
+def on_cG_trackbar(value):
+    #print("Trackbar value:", value)
+    global cG
+    cG = value
+
+
+#Callback function for the trackbar
+def on_cB_trackbar(value):
+    #print("Trackbar value:", value)
+    global cB
+    cB = value
+
+
 cv2.namedWindow("Camera")
 cv2.createTrackbar("bold", "Camera", bold, 10, on_bold_trackbar)
+cv2.createTrackbar("tSize", "Camera", tSize, 10, on_size_trackbar)
+cv2.createTrackbar("cR", "Camera", cR, 255, on_cR_trackbar)
+cv2.createTrackbar("cG", "Camera", cG, 255, on_cG_trackbar)
+cv2.createTrackbar("cB", "Camera", cB, 255, on_cB_trackbar)
 
 
 # If video device was successfully opened
@@ -42,7 +78,7 @@ while(cap.isOpened()):
 
     # Text
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(frame, 'YOU', [pt+80 for pt in topLeft], font, 2, (0, 255, 255), 1 + bold)
+    cv2.putText(frame, 'YOU', [pt+80 for pt in topLeft], font, 1 + tSize, (cR, cG, cB), 1 + bold)
 
     # Display
     cv2.imshow("Camera", frame)
