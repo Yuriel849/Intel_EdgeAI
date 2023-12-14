@@ -7,5 +7,6 @@ Run in terminal "sudo apt install v4l-utils" to install necessary library
 Run in terminal "v4l2-ctl --list-devices" to check camera devices
 
 ### * Getting video capture from the first camera device with OpenCV in Python
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-"CAP_DSHOW" is the parameter for Windows systems, use "CAP_V4L2" for Linux systems
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)<br>
+>> "CAP_DSHOW": parameter for Windows systems
+>> "CAP_V4L2": parameter for Linux systems
