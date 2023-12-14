@@ -126,3 +126,6 @@ for n in range(30):
     plt.suptitle("Model predictions (blue: correct, red: incorrect)")
 
 plt.show()
+
+model.save('flowers.h5')
+
