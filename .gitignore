@@ -614,4 +614,4 @@ pyrightconfig.json
 
 *.h5
 
-*.models/
+*./models/
