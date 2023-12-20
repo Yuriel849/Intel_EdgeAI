@@ -1,9 +1,10 @@
 from initialize_tts import *
-from pipeline import *
+from pipeline_tts import *
 import time
 from bark import SAMPLE_RATE
 import scipy.io.wavfile
 
+# << Prerequisites installation >>
 # if sys.platform == "linux":
 #     %pip install -q "torch==1.13.1" "torchvision==0.14.1" "torchaudio==0.13.1" --index-url https://download.pytorch.org/whl/cpu
 # else:
@@ -23,7 +24,11 @@ ov_fine_model = OVBarkFineEncoder(core, "AUTO", fine_model_dir)
 
 torch.manual_seed(42)
 t0 = time.time()
-text = "Today is a super cold evening with some light snowfall."
+text = "WOMAN: Title, Snowy Night. ...... \
+        Today it snowed for the first time this winter. \
+        It was a light snowfall and the air too warm for the snow to pile up on the ground. \
+        Still, the snow continued throughout the night. \
+        This snowy night gives me hope for a white Christmas."
 audio_array = generate_audio(tokenizer, ov_text_model, ov_coarse_model, ov_fine_model, text)
 generation_duration_s = time.time() - t0
 audio_duration_s = audio_array.shape[0] / SAMPLE_RATE

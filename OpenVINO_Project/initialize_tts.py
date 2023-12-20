@@ -4,9 +4,11 @@ import torch
 import openvino as ov
 
 def initialize():
+    # << Download and convert models >>
     models_dir = Path("models")
     models_dir.mkdir(exist_ok=True)
 
+    # << Text encoder >>
     text_use_small = True
 
     text_encoder = load_model(
@@ -38,6 +40,7 @@ def initialize():
         del text_encoder_exportable
     del text_encoder_model, text_encoder
 
+    # << Coarse encoder >>
     coarse_use_small = True
 
     coarse_model = load_model(
@@ -73,6 +76,7 @@ def initialize():
 
     fine_feature_extractor_path = fine_model_dir / "bark_fine_feature_extractor.xml"
 
+    # << Fine encoder >>
     if not fine_feature_extractor_path.exists():
         lm_heads = fine_model.lm_heads
         fine_feature_extractor = FineModel(fine_model)
